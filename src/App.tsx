@@ -1,6 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './index.css' 
+const key = 'fec76df21593484e9a8142548260103'
 function App() {
+  const [city, setCity] = useState('')
+  const[date, setDate]=useState(new Date)
+  const [weatherData, setWeatherData] = useState('')
+  useEffect(()=>{
+    async function getData() {
+    const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=Paris`);
+    const data = await res.json()
+    setWeatherData(data)
+    console.log(data);
+  } 
+  }, [])
+  
+
   return (
     <div className='flex flex-col justify-center items-center p-2 gap-0.5'>
       <h1 className='text-lg w-fit md:text-2xl'>Weather Now</h1>
