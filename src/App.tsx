@@ -95,7 +95,7 @@ function App() {
       }
     } 
   getData()
-  }, [])
+  }, [city])
   
 
   return (
@@ -105,9 +105,9 @@ function App() {
       <div className='flex flex-col gap-1.25 w-full max-w-125'>
         <div className='bg-slate-600 rounded-sm relative'>
         <img src="icon-search.svg" className='absolute opacity-60 w-5 h-5 pt-1 pl-1'/>
-          <input type="text" placeholder="Enter city name" className='p-1 pl-6 w-full rounded-sm outline-none focus:ring-1 focus:ring-white/60' />
+          <input type="text" value={city} onChange={(e)=>setCity(e.target.value)} placeholder="Enter city name" className='p-1 pl-6 w-full rounded-sm outline-none focus:ring-1 focus:ring-white/60' />
         </div>
-        <button className='bg-indigo-600 p-1 rounded-sm transition-all hover:bg-indigo-900'>Search</button>
+        {/*<button  className='bg-indigo-600 p-1 rounded-sm transition-all hover:bg-indigo-900'>Search</button>*/}
         
         {weatherData && (
           <div className='flex flex-col gap-1'>
@@ -119,7 +119,7 @@ function App() {
               <div className='flex flex-col items-center'>
                 <div className='flex justify-between items-center'>
                   <img src={getIcon(weatherData.current.condition.code)} alt="icon" className="h-20" />
-                  <p className="text-5xl text-indigo-50 font-semibold italic">{weatherData.current.temp_c}°C</p>
+                  <p className="text-4xl text-indigo-50 font-semibold italic">{Math.round(weatherData.current.temp_c)}°C</p>
                 </div>
                 <p className='font-semibold text-lg'>{weatherData.current.condition.text}</p>
               </div>
