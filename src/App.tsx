@@ -1,8 +1,9 @@
 import { useState } from 'react'
-
+import './index.css' 
 function App() {
   return (
     <>
+    <h1 className='text-2xl'>Weather app</h1>
     </>
   )
 }
