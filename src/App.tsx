@@ -9,8 +9,8 @@ function App() {
         <img src="icon-search.svg" className='absolute opacity-60 w-5 h-5 pt-1 pl-1'/>
           <input type="text" placeholder="Enter city name" className='p-1 pl-6 w-full rounded-sm outline-none focus:ring-1 focus:ring-white/60' />
         </div>
-        <button className='bg-indigo-600 p-1 rounded-sm hover:bg-indigo-900'>Search</button>
-        <div className="p-3 flex flex-col items-center bg-[url('/bg-today-small.svg')] bg-center bg-cover rounded-xl h-max-[250px] aspect-[1.2/1] min-[350px]:bg-[url('/bg-today-large.svg')] min-[350px]:aspect-3/1 min-[400px]:flex-row min-[400px]:justify-between min-[400px]:p-6">
+        <button className='bg-indigo-600 p-1 rounded-sm transition-all hover:bg-indigo-900'>Search</button>
+        <div className="p-3 flex flex-col items-center bg-[url('/bg-today-small.svg')] hover:brightness-75 bg-center bg-cover rounded-xl h-max-[250px] aspect-[1.2/1] min-[350px]:bg-[url('/bg-today-large.svg')] min-[350px]:aspect-3/1 min-[400px]:flex-row min-[400px]:justify-between min-[400px]:p-6">
           <div>
             <h2 className='text-lg font-bold '>London, Great Britain</h2>
             <p className='text-md font-semibold'>Tuesday, 25.02.2026</p>
@@ -21,11 +21,11 @@ function App() {
           </div>
         </div>
         <div className="flex gap-2 w-full">
-        <div className='bg-slate-600 p-5 rounded-2xl w-full'>
+        <div className='bg-slate-600 p-5 rounded-2xl w-full transition-all hover:bg-slate-700'>
           <p className=''>Humidity:</p>
           <p className='text-2xl'>20%</p>
         </div>
-        <div className='bg-slate-600 p-5 rounded-2xl w-full'>
+        <div className='bg-slate-600 p-5 rounded-2xl w-full transition-all hover:bg-slate-700'>
           <p className=''>Wind:</p>
           <p className='text-2xl'>22 km/h</p>
         </div>
