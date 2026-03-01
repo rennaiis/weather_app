@@ -13,13 +13,15 @@
     font-family: var(--font-body);
     color: var(--color-slate-200);
     font-weight: 400;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-sizing: border-box;
+    font-size: x-small;
   }
   h1{
     font-family: var(--font-header);
     font-weight: 800;
-
+  }
+  #root{
+    width: 100%;
+    height: 100%;
   }
 }
