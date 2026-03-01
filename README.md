@@ -6,7 +6,7 @@
 * TypeScript (Interface, Utility Types)
 * Tailwind CSS
 * Vercel 
-дизайн приложения, иконки, фоны и цвета взяты с [сайта frontend-mentor](https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49) 
+* дизайн приложения, иконки, фоны и цвета взяты с [сайта frontend-mentor](https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49) 
 
 ## Как запустить проект на компьютере
 1. Клонировать репозиторий:
