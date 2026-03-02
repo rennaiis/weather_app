@@ -76,7 +76,7 @@ function App() {
   useEffect(()=>{
       async function getData() {
       try{
-      const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`);
+      const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`);
       if(!res.ok){
         throw new Error(`No mathcing location found`)
       }
