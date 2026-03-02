@@ -102,7 +102,7 @@ function App() {
     <div className='flex flex-col justify-center items-center p-2 gap-0.5'>
       <h1 className='text-lg w-fit md:text-2xl'>Weather Now</h1>
       <p className='text-indigo-300'>{error}</p>
-      <div className='flex flex-col gap-1.25 w-full max-w-125'>
+      <div className='flex flex-col gap-1.25 w-full max-w-150'>
         <div className='bg-slate-600 rounded-sm relative'>
         <img src="icon-search.svg" className='absolute opacity-60 w-5 h-5 pt-1 pl-1'/>
           <input type="text" value={city} onChange={(e)=>setCity(e.target.value)} placeholder="Enter city name" className='p-1 pl-6 w-full rounded-sm outline-none focus:ring-1 focus:ring-white/60' />
