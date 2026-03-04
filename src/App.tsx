@@ -1,7 +1,23 @@
 import { useState, useEffect } from 'react'
 import './index.css' 
 const key = 'fec76df21593484e9a8142548260103'
-
+interface IForecastDay{
+  date: string;
+  astro:{
+    sunrise: string;
+    sunset: string;
+  };
+  day: {
+    avghumidity: number;
+    avgtemp_c: number;
+    condition: {
+      text: string,
+      code: number
+    };
+    maxtemp_c: number;
+    mintemp_c: number;
+  }
+}
 interface IWeatherData{
   location: {
     name: string;
@@ -20,6 +36,10 @@ interface IWeatherData{
       code: number
     } 
   };
+  forecast: {
+    forecastday: IForecastDay[]
+  }
+
 }
 function getDayOfWeek(n: ReturnType<Date['getDay']>){
   switch(n){
@@ -137,6 +157,7 @@ function App() {
         {/*<button  className='bg-indigo-600 p-1 rounded-sm transition-all hover:bg-indigo-900'>Search</button>*/}
         
         {(weatherData && loading==false) &&  (
+          <>
           <div className='flex flex-col gap-1'>
             <div className="p-3 flex flex-col items-center bg-[url('/bg-today-small.svg')] hover:brightness-75 bg-center bg-cover rounded-xl h-max-[250px] aspect-[1.2/1] min-[350px]:bg-[url('/bg-today-large.svg')] min-[350px]:aspect-3/1 min-[450px]:flex-row min-[450px]:justify-between min-[450px]:p-6">
               <div>
@@ -165,7 +186,26 @@ function App() {
                 <p className='text-2xl'>{weatherData.current.feelslike_c}°C</p>
               </div>
             </div>
+            <h1 className='m-auto text-center text-lg w-fit md:text-2xl'>3-day forecast</h1>
+            <div className='flex gap-1  w-full flex-wrap '>
+              {weatherData.forecast.forecastday.map(item =>
+              <div className='p-5 rounded-xl flex-1 min-w-30 transition-all hover:bg-slate-700 bg-indigo-600/25'>
+                <div className='flex justify-center items-center'>
+                  <img src={getIcon(item.day.condition.code)} alt="icon" className="h-20" />
+                  <p className='text-3xl text-indigo-50 font-semibold italic'>{item.day.avgtemp_c}°C</p>
+                </div>
+                <div className='flex justify-center items-center gap-2 p-4'>
+                  <p className='text-lg bg-indigo-200/10 p-2 rounded-md '><span className='text-sm'>maximum:</span>: {item.day.maxtemp_c}°C</p>
+                  <p className='text-lg'><span className='text-sm'>mimimum:</span> {item.day.mintemp_c}°C</p>
+                </div>
+                <p>sunrise: {item.astro.sunrise}</p>
+                <p>sunset: {item.astro.sunset}</p>
+              </div>
+              )}
+            </div>
           </div>
+          
+          </>
         )}
         
       </div>
