@@ -19,7 +19,7 @@ interface IWeatherData{
       text: string;
       code: number
     } 
-  }
+  };
 }
 function getDayOfWeek(n: ReturnType<Date['getDay']>){
   switch(n){
@@ -73,10 +73,32 @@ function App() {
   const[date, setDate]=useState(new Date)
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null)
   const [error, setError] = useState('')
+  const[loading, setLoading] = useState(false)
+  const [coords, setCoords] = useState<null | GeolocationCoordinates>(null)
   useEffect(()=>{
+    if(!navigator.geolocation){
+      setError('geolocation is not supported')
+    }
+    navigator.geolocation.getCurrentPosition((position)=>{
+      setCoords(position.coords)
+    },
+    (err)=>{
+      setError('failed to get your geolocation')
+    }
+  )
+  }, [])
+  useEffect(()=>{
+      if(!city.trim()){
+        setWeatherData(null);
+        setError('');
+        return;
+      }
+      
+      setLoading(true)
       async function getData() {
       try{
-      const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`);
+        const query= city.trim()?city:`${coords?.latitude}, ${coords?.longitude}`
+        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3`);
       if(!res.ok){
         throw new Error(`No mathcing location found`)
       }
@@ -92,6 +114,8 @@ function App() {
           setWeatherData(null)
         }
       
+      }finally{
+        setLoading(false)
       }
     } 
   getData()
@@ -101,7 +125,10 @@ function App() {
   return (
     <div className='flex flex-col justify-center items-center p-2 gap-0.5'>
       <h1 className='text-lg w-fit md:text-2xl'>Weather Now</h1>
-      <p className='text-indigo-300'>{error}</p>
+    
+      <p className='text-indigo-300'>{loading? 'loaging...' :error}</p>
+      <div className=''></div>
+      {loading ? <div className='m-1 h-4 w-4 animate-spin rounded-full border-2 border-indigo-300 border-t-indigo-900'></div>:''}
       <div className='flex flex-col gap-1.25 w-full max-w-150'>
         <div className='bg-slate-600 rounded-sm relative'>
         <img src="icon-search.svg" className='absolute opacity-60 w-5 h-5 pt-1 pl-1'/>
@@ -109,7 +136,7 @@ function App() {
         </div>
         {/*<button  className='bg-indigo-600 p-1 rounded-sm transition-all hover:bg-indigo-900'>Search</button>*/}
         
-        {weatherData && (
+        {(weatherData && loading==false) &&  (
           <div className='flex flex-col gap-1'>
             <div className="p-3 flex flex-col items-center bg-[url('/bg-today-small.svg')] hover:brightness-75 bg-center bg-cover rounded-xl h-max-[250px] aspect-[1.2/1] min-[350px]:bg-[url('/bg-today-large.svg')] min-[350px]:aspect-3/1 min-[450px]:flex-row min-[450px]:justify-between min-[450px]:p-6">
               <div>
