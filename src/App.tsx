@@ -94,8 +94,8 @@ function App() {
   const [weatherData, setWeatherData] = useState<IWeatherData | null>(null)
   const [error, setError] = useState('')
   const[loading, setLoading] = useState(false)
-  const [coords, setCoords] = useState<null | GeolocationCoordinates>(null)
-  useEffect(()=>{
+  /*const [coords, setCoords] = useState<null | GeolocationCoordinates>(null)*/
+  /*useEffect(()=>{
     if(!navigator.geolocation){
       setError('geolocation is not supported')
     }
@@ -103,7 +103,7 @@ function App() {
       setCoords(position.coords)
     },
   )
-  }, [])
+  }, [])*/
   useEffect(()=>{
       if(!city.trim()){
         setWeatherData(null);
@@ -114,8 +114,8 @@ function App() {
       setLoading(true)
       async function getData() {
       try{
-        const query= city.trim()?city:`${coords?.latitude}, ${coords?.longitude}`
-        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${query}&days=3`);
+        /*const query= (city=='')? `${coords?.latitude}, ${coords?.longitude}`:city*/
+        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3`);
       if(!res.ok){
         throw new Error(`No mathcing location found`)
       }
