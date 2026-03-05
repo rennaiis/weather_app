@@ -186,7 +186,7 @@ function App() {
             <h1 className='m-auto text-center text-lg w-fit md:text-2xl'>3-day forecast</h1>
             <div className='flex gap-1  w-full flex-wrap '>
               {weatherData.forecast.forecastday.map(item =>
-              <div className='p-5 rounded-xl flex-1 min-w-30 transition-all hover:bg-slate-700 bg-indigo-600/25'>
+              <div className='p-5 rounded-xl flex-1 min-w-40 transition-all hover:bg-indigo-900 bg-indigo-600/25'>
                 <div className='flex justify-center items-center'>
                   <img src={getIcon(item.day.condition.code)} alt="icon" className="h-20" />
                   <p className='text-3xl text-indigo-50 font-semibold italic'>{item.day.avgtemp_c}°C</p>
