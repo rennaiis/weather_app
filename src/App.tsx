@@ -102,9 +102,6 @@ function App() {
     navigator.geolocation.getCurrentPosition((position)=>{
       setCoords(position.coords)
     },
-    (err)=>{
-      setError('failed to get your geolocation')
-    }
   )
   }, [])
   useEffect(()=>{
@@ -118,7 +115,7 @@ function App() {
       async function getData() {
       try{
         const query= city.trim()?city:`${coords?.latitude}, ${coords?.longitude}`
-        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3`);
+        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${query}&days=3`);
       if(!res.ok){
         throw new Error(`No mathcing location found`)
       }
