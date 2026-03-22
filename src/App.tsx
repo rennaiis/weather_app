@@ -105,6 +105,8 @@ function App() {
   )
   }, [])*/
   useEffect(()=>{
+    const controller = new AbortController();
+    const signal = controller.signal;
       if(!city.trim()){
         setWeatherData(null);
         setError('');
@@ -115,7 +117,7 @@ function App() {
       async function getData() {
       try{
         /*const query= (city=='')? `${coords?.latitude}, ${coords?.longitude}`:city*/
-        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3`);
+        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3`, {signal});
       if(!res.ok){
         throw new Error(`No mathcing location found`)
       }
@@ -136,6 +138,9 @@ function App() {
       }
     } 
   getData()
+  return()=>{
+    controller.abort();
+  }
   }, [city])
   
 
