@@ -15,7 +15,7 @@
 
 ## Как запустить проект на компьютере
 1. Клонировать репозиторий:
-   git clone https://github.com/твой_ник/budget-tracker.git
+   git clone https://github.com/rennaiis/budget-tracker.git
 2. Установить зависимости:
    npm install
 3. Запустить проект:
